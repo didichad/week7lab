@@ -42,11 +42,23 @@ def printinfo(DetailsPrinted):
             print()
             continue  
     while True:
-        empname = GetEmpName()
-        empdetails = GetEmpDetails()
+        EmpFile = open("Employees.txt", "a+")                
+    while True:
+                empname = GetEmpName()
+                if (empname.upper() == "END"):
+                    break
+                fromdate, todate = GetDatesWorked()
+                hours = GetHoursWorked()
+                hourlyrate = GetHourlyRate()
+                taxrate = GetTaxRate()
+                EmpDetail = fromdate + "|" + todate  + "|" + empname  + "|" + str(hours)  + "|" + str(hourlyrate)  + "|" + str(taxrate) + "\n"  
+                EmpFile.write(EmpDetail)
+        # close file to save data
+EmpFile.close()    
+printinfo(DetailsPrinted)
+if not EmpDetail:
+        break
 
-        if not EmpDetail:
-            break
         fromdate = EmpList[0]
         if (str(rundate).upper() != "ALL"):
             checkdate = datetime.strptime(fromdate, "%m/%d/%Y")
